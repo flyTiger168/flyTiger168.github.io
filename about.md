@@ -2,6 +2,9 @@
 layout: page
 title: 关于
 permalink: /about/
+lang: zh-CN
+translation_key: about
+description: 关于 Tiger 和这个个人博客
 ---
 
 你好，我是 Tiger。欢迎来到我的个人博客。

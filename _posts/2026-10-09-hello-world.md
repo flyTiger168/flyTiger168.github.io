@@ -1,5 +1,8 @@
 ---
 layout: post
+lang: zh-CN
+translation_key: hello-world
+permalink: /posts/hello-world/
 title: "博客上线了"
 date: 2026-10-09 00:00:00 +0800
 excerpt: "欢迎来到我的个人博客。从这里开始，记录学习与思考。"

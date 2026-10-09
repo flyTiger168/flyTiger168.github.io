@@ -1,0 +1,65 @@
+{%- assign locale = page.lang | default: site.lang -%}
+{%- assign t = site.data.locales[locale] -%}
+{%- if locale == 'en' -%}
+  {%- assign other_locale = 'zh-CN' -%}
+{%- else -%}
+  {%- assign other_locale = 'en' -%}
+{%- endif -%}
+{%- assign other_t = site.data.locales[other_locale] -%}
+{%- assign translated_page = nil -%}
+{%- if page.translation_key -%}
+  {%- assign translated_page = site.pages | where: 'translation_key', page.translation_key | where: 'lang', other_locale | first -%}
+  {%- unless translated_page -%}
+    {%- assign translated_page = site.posts | where: 'translation_key', page.translation_key | where: 'lang', other_locale | first -%}
+  {%- endunless -%}
+{%- endif -%}
+{%- assign other_url = translated_page.url | default: other_t.home -%}
+{%- capture browser_title -%}{% if page.title %}{{ page.title }} | {% endif %}{{ t.title }}{%- endcapture -%}
+{%- assign description = page.description | default: page.excerpt | default: t.description | strip_html | strip_newlines | strip -%}
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ browser_title | escape }}</title>
+    <meta name="description" content="{{ description | escape }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link rel="alternate" hreflang="{{ locale }}" href="{{ page.url | absolute_url }}">
+    {% if translated_page %}<link rel="alternate" hreflang="{{ other_locale }}" href="{{ other_url | absolute_url }}">{% endif %}
+    <meta property="og:title" content="{{ browser_title | escape }}">
+    <meta property="og:description" content="{{ description | escape }}">
+    <meta property="og:site_name" content="{{ t.title | escape }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="{{ '/feed.xml' | relative_url }}">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{% if locale == 'en' %}Skip to content{% else %}跳转到正文{% endif %}</a>
+    <header class="site-header" role="banner">
+      <div class="wrapper blog-header">
+        <a class="site-title" href="{{ t.home | relative_url }}">{{ t.title | escape }}</a>
+        <nav class="blog-nav" aria-label="{% if locale == 'en' %}Main navigation{% else %}主导航{% endif %}">
+          <a href="{{ t.about_url | relative_url }}">{{ t.about }}</a>
+          <div class="language-switch" role="group" aria-label="{{ t.language_label }}">
+            {% if locale == 'en' %}
+              <a href="{{ other_url | relative_url }}" lang="zh-CN" hreflang="zh-CN"{% unless translated_page %} title="{{ t.fallback | escape }}"{% endunless %}>中文</a>
+              <span aria-current="true" lang="en">English</span>
+            {% else %}
+              <span aria-current="true" lang="zh-CN">中文</span>
+              <a href="{{ other_url | relative_url }}" lang="en" hreflang="en"{% unless translated_page %} title="{{ t.fallback | escape }}"{% endunless %}>English</a>
+            {% endif %}
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content" class="page-content" aria-label="{% if locale == 'en' %}Content{% else %}正文{% endif %}">
+      <div class="wrapper">{{ content }}</div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrapper blog-footer">
+        <div><strong>{{ t.title | escape }}</strong><p>{{ t.description }}</p></div>
+        <div><a href="https://github.com/flyTiger168">GitHub</a> · <a href="{{ '/feed.xml' | relative_url }}">{{ t.rss }}</a></div>
+      </div>
+    </footer>
+  </body>
+</html>

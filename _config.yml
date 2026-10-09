@@ -10,8 +10,13 @@ permalink: /posts/:title/
 show_excerpts: true
 minima:
   date_format: "%Y 年 %m 月 %d 日"
-header_pages:
-  - about.md
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      lang: zh-CN
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

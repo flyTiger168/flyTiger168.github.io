@@ -17,6 +17,51 @@ body {
   border-radius: 8px;
 }
 
+.blog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.blog-header .site-title {
+  float: none;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.blog-nav, .language-switch {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.language-switch {
+  gap: 12px;
+  border-left: 1px solid #e8e8e8;
+  padding-left: 16px;
+}
+
+.language-switch [aria-current] {
+  font-weight: 600;
+  color: #111;
+}
+
+.language-switch a, .blog-nav > a {
+  padding: 6px 0;
+}
+
+.home-intro { margin-bottom: 32px; }
+.back-to-posts { margin-top: 40px; }
+.blog-footer { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.blog-footer p { color: #828282; margin-bottom: 0; }
+a:focus-visible { outline: 2px solid #2a7ae2; outline-offset: 4px; }
+.skip-link { position: absolute; left: 16px; top: -100px; background: #fff; padding: 8px 12px; z-index: 10; }
+.skip-link:focus { top: 8px; }
+
 @media screen and (max-width: 600px) {
   .site-title { font-size: 22px; }
   .post-title { font-size: 30px; }

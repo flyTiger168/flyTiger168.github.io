@@ -1,0 +1,13 @@
+---
+layout: default
+---
+{% assign locale = page.lang | default: site.lang %}
+{% assign t = site.data.locales[locale] %}
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: t.date_format }}</time></p>
+  </header>
+  <div class="post-content">{{ content }}</div>
+  <p class="back-to-posts"><a href="{{ t.home | relative_url }}">← {{ t.back }}</a></p>
+</article>

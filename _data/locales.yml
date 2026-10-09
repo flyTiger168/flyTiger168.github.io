@@ -1,0 +1,26 @@
+zh-CN:
+  title: Tiger 的博客
+  description: 记录学习与思考
+  home: /
+  about_url: /about/
+  about: 关于
+  posts: 最新文章
+  rss: 订阅 RSS
+  empty: 暂时还没有文章。
+  date_format: "%Y 年 %m 月 %d 日"
+  language_label: 选择语言
+  fallback: 此页面暂无英文版本，前往英文首页
+  back: 返回文章列表
+en:
+  title: Tiger's Blog
+  description: Notes on learning and reflection
+  home: /en/
+  about_url: /en/about/
+  about: About
+  posts: Latest posts
+  rss: Subscribe via RSS
+  empty: No posts yet.
+  date_format: "%B %-d, %Y"
+  language_label: Choose language
+  fallback: This page has no Chinese version. Go to the Chinese homepage
+  back: Back to all posts

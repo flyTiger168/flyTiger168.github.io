@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{% assign locale = page.lang | default: site.lang %}
+{% assign t = site.data.locales[locale] %}
+{% assign posts = site.posts | where: 'lang', locale %}
+<div class="home">
+  <div class="home-intro">{{ content }}</div>
+  <h1 class="post-list-heading">{{ t.posts }}</h1>
+  <ul class="post-list">
+    {% for post in posts %}
+      <li>
+        <time class="post-meta" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: t.date_format }}</time>
+        <h2><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+        {{ post.excerpt }}
+      </li>
+    {% else %}
+      <li>{{ t.empty }}</li>
+    {% endfor %}
+  </ul>
+</div>
