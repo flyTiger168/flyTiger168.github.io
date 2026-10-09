@@ -1,0 +1,22 @@
+title: Tiger 的博客
+description: 记录学习与思考
+author: Tiger
+url: "https://flytiger168.github.io"
+baseurl: ""
+lang: zh-CN
+timezone: Asia/Shanghai
+theme: minima
+permalink: /posts/:title/
+show_excerpts: true
+minima:
+  date_format: "%Y 年 %m 月 %d 日"
+header_pages:
+  - about.md
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
